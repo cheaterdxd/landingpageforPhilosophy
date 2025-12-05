@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +9,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+
     <script>
         tailwind.config = {
             theme: {
@@ -33,7 +36,8 @@
     </script>
     <style>
         body {
-            background-color: #222; /* Nền tối bên ngoài poster */
+            background-color: #222;
+            /* Nền tối bên ngoài poster */
             display: flex;
             justify-content: center;
             min-height: 100vh;
@@ -53,9 +57,10 @@
 
         .poster-container {
             width: 100%;
-            max-width: 600px; /* Khổ dọc hẹp */
+            max-width: 600px;
+            /* Khổ dọc hẹp */
             background-color: #EAEAEA;
-            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
             position: relative;
             overflow: hidden;
             display: flex;
@@ -74,20 +79,24 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- Khung Poster Chính -->
     <main class="poster-container min-h-[1000px] text-poster-black">
-        
+
         <div class="noise-texture"></div>
 
         <!-- Header Area -->
         <header class="p-8 pb-4 flex justify-between items-start border-b-2 border-poster-black relative z-10">
             <!-- Space Holder Logo Xóm -->
             <div class="flex flex-col gap-1 group cursor-help">
-                <div class="w-12 h-12 border border-poster-black bg-white flex items-center justify-center relative overflow-hidden">
-                    <div class="w-full h-full absolute bg-poster-black transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                    <span class="font-sans font-bold text-xs relative z-10 group-hover:text-white mix-blend-difference">XÓM</span>
+                <div
+                    class="w-12 h-12 border border-poster-black bg-white flex items-center justify-center relative overflow-hidden">
+                    <!-- <div class="w-full h-full absolute bg-poster-black transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div> -->
+                    <img src="xomtriethoc.png" alt="Logo Xóm" class="w-full h-full object-contain">
+                    <span
+                        class="font-sans font-bold text-xs relative z-10 group-hover:text-white mix-blend-difference">XÓM</span>
                 </div>
                 <span class="text-[10px] uppercase tracking-wider font-bold opacity-60">Logo Space</span>
             </div>
@@ -95,14 +104,16 @@
             <!-- Poster Series Info -->
             <div class="text-right pt-2">
                 <p class="font-sans text-xs font-bold tracking-[0.2em] uppercase mb-1">Số 01</p>
-                <!-- Đã xóa dòng "Tuyển tập Triết học" theo yêu cầu -->
             </div>
 
             <!-- Space Holder Logo Chí Dũng -->
             <div class="flex flex-col gap-1 items-end group cursor-help">
-                <div class="w-12 h-12 border border-poster-black bg-poster-black text-white flex items-center justify-center relative overflow-hidden">
-                     <div class="w-full h-full absolute bg-white transform -translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                    <span class="font-sans font-bold text-xs relative z-10 group-hover:text-black mix-blend-difference">CD</span>
+                <div
+                    class="w-12 h-12 border border-poster-black bg-poster-black text-white flex items-center justify-center relative overflow-hidden">
+                    <!-- <div class="w-full h-full absolute bg-white transform -translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div> -->
+                    <img src="chidungcenterLogo.png" alt="Logo Chí Dũng" class="w-full h-full object-contain">
+                    <span
+                        class="font-sans font-bold text-xs relative z-10 group-hover:text-black mix-blend-difference">CD</span>
                 </div>
                 <span class="text-[10px] uppercase tracking-wider font-bold opacity-60">Logo Space</span>
             </div>
@@ -110,17 +121,21 @@
 
         <!-- Main Visual & Title -->
         <section class="relative px-8 pt-12 pb-16 flex-grow flex flex-col justify-center overflow-hidden">
-            
+
             <!-- Abstract Geometric Composition Background -->
-            <div class="absolute top-0 right-0 w-64 h-64 bg-poster-accent rounded-full -mr-16 -mt-10 mix-blend-multiply opacity-90 z-0"></div>
-            
+            <div
+                class="absolute top-0 right-0 w-64 h-64 bg-poster-accent rounded-full -mr-16 -mt-10 mix-blend-multiply opacity-90 z-0">
+            </div>
+
             <!-- Adjusted: Moved decoration to bottom right to avoid text overlap -->
-            <div class="absolute -bottom-16 -right-10 w-64 h-64 border-[1px] border-poster-black/30 rounded-full z-0 flex items-center justify-center pointer-events-none">
+            <div
+                class="absolute -bottom-16 -right-10 w-64 h-64 border-[1px] border-poster-black/30 rounded-full z-0 flex items-center justify-center pointer-events-none">
                 <div class="w-40 h-40 bg-poster-black rounded-full opacity-5"></div>
             </div>
-            
+
             <!-- Adjusted: Decorative line moved slightly up -->
-            <div class="absolute top-[40%] left-0 w-full h-[1px] bg-poster-black transform -rotate-6 z-0 opacity-20"></div>
+            <div class="absolute top-[40%] left-0 w-full h-[1px] bg-poster-black transform -rotate-6 z-0 opacity-20">
+            </div>
 
             <!-- Content -->
             <div class="relative z-10">
@@ -128,21 +143,25 @@
                 <h1 class="text-7xl font-sans font-black leading-[0.9] tracking-tighter mb-10">
                     NHỮNG <br>
                     CHỦ ĐIỂM <br>
-                    <span class="font-serif italic font-normal text-6xl block mt-2 text-poster-accent">Triết học nhỏ</span>
+                    <span class="font-serif italic font-normal text-6xl block mt-2 text-poster-accent">Triết học
+                        nhỏ</span>
                 </h1>
-                
+
                 <!-- Topic Description Area (Replaced List) -->
                 <div class="mt-16 relative">
                     <!-- Thick border on left for emphasis -->
                     <div class="absolute -left-8 top-0 bottom-0 w-2 bg-poster-black"></div>
-                    
+
                     <!-- Drop cap effect for text -->
-                    <div class="relative bg-white/60 backdrop-blur-sm p-6 -ml-6 border border-poster-black/10 shadow-sm">
+                    <div
+                        class="relative bg-white/60 backdrop-blur-sm p-6 -ml-6 border border-poster-black/10 shadow-sm">
                         <p class="font-serif text-2xl md:text-3xl leading-relaxed text-poster-black text-justify">
-                            <span class="font-sans font-black text-6xl float-left mr-4 mt-[-12px] text-poster-accent leading-none">T</span>ôi không thích cách lũ người mơ mộng vào những thứ "không tồn tại" - Parmenides. <br>
+                            <span
+                                class="font-sans font-black text-6xl float-left mr-4 mt-[-12px] text-poster-accent leading-none">T</span>ôi
+                            không thích cách lũ người mơ mộng vào những thứ "không tồn tại" - Parmenides. <br>
                             Những nếu không có "Void" thì cậu làm sao có thể có di chuyển được đây ? - Democritus.
                         </p>
-                        
+
                         <div class="mt-8 flex justify-between items-end border-t border-poster-black/20 pt-4">
                             <p class="font-sans text-xs font-bold uppercase tracking-widest text-poster-accent">
                                 Parmenides vs. Democritus
@@ -168,19 +187,21 @@
                         <p class="font-serif text-xl italic">Xóm Triết Học</p>
                     </div>
                 </div>
-                
+
                 <div class="text-right">
                     <p class="font-sans text-[10px] uppercase opacity-50 mb-1">Đơn vị quản lý</p>
-                    <p class="font-sans text-sm font-bold border-b border-white/30 pb-1 mb-2 inline-block">Trung tâm Chí Dũng</p>
+                    <p class="font-sans text-sm font-bold border-b border-white/30 pb-1 mb-2 inline-block">Trung tâm Chí
+                        Dũng</p>
                     <p class="font-mono text-[10px] opacity-40">EST. <span id="year"></span></p>
                 </div>
             </div>
         </footer>
 
     </main>
-    
+
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>
+
 </html>

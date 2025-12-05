@@ -2,9 +2,8 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bộ Sưu Tập Poster: Những Phát Biểu Của Vĩ Nhân</title>
-    <!-- Import Fonts: Thêm K2D -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Chuyên mục: Những Phát Biểu Của Vĩ Nhân</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=K2D:wght@300;400;600;700&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
@@ -16,7 +15,6 @@
             --accent-red: #8a1c1c;
             --text-dark: #0f0f0f;
             --gold: #d4af37;
-            --transition-speed: 0.5s;
         }
 
         * {
@@ -24,65 +22,76 @@
             margin: 0;
             padding: 0;
             user-select: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            height: 100vh;
+            /* Chiều cao full màn hình */
+            height: 100dvh; 
+            width: 100vw;
             display: flex;
             justify-content: center;
             align-items: center;
             background-color: #000;
             font-family: 'K2D', sans-serif;
             overflow: hidden;
+            padding: 0; 
         }
 
-        /* --- UI Navigation --- */
+        /* --- Nút điều hướng (Scale theo vh) --- */
         .nav-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: transparent;
-            border: 1px solid #444;
-            color: #666;
-            width: 50px;
-            height: 50px;
+            background: rgba(0,0,0,0.3);
+            border: 0.1vh solid #666;
+            color: #ccc;
+            width: 6vh; 
+            height: 6vh;
             border-radius: 50%;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 2.5vh;
             z-index: 100;
+            backdrop-filter: blur(5px);
         }
 
         .nav-btn:hover {
             border-color: var(--paper-color);
             color: var(--paper-color);
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.2);
         }
 
-        .prev-btn { left: 20px; }
-        .next-btn { right: 20px; }
+        .prev-btn { left: 2vh; }
+        .next-btn { right: 2vh; }
 
-        /* Container chính của Poster */
+        /* Khung Poster Chính */
         .poster-frame {
-            height: 100vh; /* Changed to 100% viewport height */
-            width: auto;   /* Width adjusts automatically */
-            aspect-ratio: 2/3.1;
-            /* Remove fixed max-width to allow full height scaling */
+            /* Chiếm trọn chiều cao */
+            height: 100dvh;
+            
+            /* Tỷ lệ khung hình điện thoại (9:18 ~ 1:2) hoặc rộng hơn chút */
+            aspect-ratio: 9/17;
+            width: auto;
+            
+            /* Đảm bảo không tràn màn hình ngang */
             max-width: 100vw; 
+
             background-color: var(--paper-color);
             position: relative;
-            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            box-shadow: 0 0 5vh rgba(0,0,0,0.9);
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            border: 12px solid #222;
-            transition: opacity 0.3s ease;
+            
+            /* Viền tính theo vh */
+            border: 0.8vh solid #222; 
         }
 
-        /* Texture giấy cũ */
+        /* Texture giấy */
         .texture-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -93,42 +102,50 @@
             mix-blend-mode: multiply;
         }
 
-        /* --- BRANDING HEADER (Xóm Triết Học) --- */
+        /* --- Header Thương Hiệu --- */
         .brand-header {
             display: flex;
             align-items: center;
-            padding: 15px 20px 5px 20px;
-            border-bottom: 2px solid #ddd;
-            margin-bottom: 10px;
+            padding: 1.5vh 2.5vh 1vh 2.5vh; 
+            border-bottom: 0.2vh solid #ddd;
             z-index: 2;
-            flex-shrink: 0; /* Prevent shrinking */
+            flex-shrink: 0;
+            height: 6vh;
         }
 
         .brand-logo-holder {
-            width: 30px;
-            height: 30px;
-            background-color: var(--accent-red);
+            width: 3.5vh; height: 3.5vh; 
+            /* Xóa background-color nếu logo của bạn đã có nền hoặc là file png trong suốt */
+            background-color: transparent; 
             border-radius: 50%;
-            margin-right: 10px;
+            margin-right: 1vh;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--gold);
-            font-size: 0.8rem;
+            font-size: 1.2vh;
             font-weight: bold;
+            overflow: hidden; /* Cắt ảnh dư thừa */
+        }
+
+        /* Thêm class cho ảnh logo */
+        .brand-logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Đảm bảo ảnh phủ kín hình tròn */
         }
 
         .brand-name {
             font-weight: 700;
             text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
+            font-size: 1.4vh;
+            letter-spacing: 0.2vh;
             color: #333;
         }
 
-        /* --- PHẦN HEADER NỘI DUNG --- */
+        /* --- Header Nội Dung --- */
         .header {
-            padding: 5px 20px 0 20px;
+            padding: 1.5vh 2vh 0 2vh;
             text-align: center;
             z-index: 2;
             position: relative;
@@ -136,38 +153,37 @@
         }
 
         .series-title {
-            font-size: 0.75rem;
-            letter-spacing: 3px;
+            font-size: 1.1vh;
+            letter-spacing: 0.3vh;
             text-transform: uppercase;
             color: #666;
-            border-bottom: 1px solid #999;
+            border-bottom: 0.1vh solid #999;
             display: inline-block;
-            padding-bottom: 3px;
-            margin-bottom: 15px;
+            padding-bottom: 0.5vh;
+            margin-bottom: 0.5vh;
             font-weight: 400;
         }
 
         .episode-number {
             font-family: 'Abril Fatface', cursive;
-            font-size: 3.5rem;
+            font-size: 6.5vh; 
             line-height: 1;
             color: var(--accent-red);
             position: absolute;
-            top: 40px;
-            right: 20px;
+            top: 4vh;
+            right: 2.5vh;
             opacity: 0.8;
-            transition: all 0.5s ease;
         }
 
         .main-title {
-            font-size: 2.8rem;
+            font-size: 4.5vh; 
             font-weight: 700;
             text-transform: uppercase;
             line-height: 0.9;
             color: var(--text-dark);
-            margin-top: 15px;
+            margin-top: 1vh;
             position: relative;
-            min-height: 2.5em;
+            min-height: 2em;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -175,75 +191,108 @@
         }
 
         .sub-title {
-            font-size: 0.85rem;
+            font-size: 1.5vh;
             font-weight: 300;
-            letter-spacing: 2px;
+            letter-spacing: 0.3vh;
             color: var(--accent-red);
-            margin-top: 5px;
+            margin-top: 0.8vh;
             text-transform: uppercase;
         }
 
-        /* --- PHẦN HÌNH ẢNH (SVG ART) --- */
+        /* --- Hình Ảnh (SVG) --- */
         .visual-art {
-            flex-grow: 1;
+            flex: 1; 
             position: relative;
             display: flex;
             justify-content: center;
-            align-items: flex-end;
+            align-items: flex-end; 
             overflow: hidden;
             z-index: 1;
-            min-height: 0; /* Important for flex container scaling */
+            min-height: 0; 
+            padding-bottom: 0;
+        }
+
+        .art-group {
+            position: relative;
+            height: 95%; /* Chiếm gần hết chiều cao vùng chứa */
+            width: auto;
+            aspect-ratio: 1/1.3;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
         }
 
         .halo {
             position: absolute;
-            width: 250px;
-            height: 250px;
+            width: 85%;
+            height: 85%; 
             background: var(--gold);
             border-radius: 50%;
-            top: 15%;
+            top: 5%; 
+            left: 50%;
+            transform: translateX(-50%);
             opacity: 0.2;
             mix-blend-mode: multiply;
-            transition: transform 1s ease;
+            z-index: -1;
         }
         
         #artSvg {
-            max-height: 100%;
+            height: 100%;
             width: auto;
+            filter: drop-shadow(0 0.5vh 1vh rgba(0,0,0,0.2));
+            z-index: 2;
         }
 
-        /* --- PHẦN QUOTE (NỘI DUNG) --- */
+        /* --- Quote Container --- */
         .quote-container {
             background: var(--text-dark);
             color: var(--paper-color);
-            padding: 25px 30px 40px 30px;
+            
+            padding: 3vh 3vh 3vh 3vh; 
             position: relative;
             z-index: 5;
-            clip-path: polygon(0 8%, 100% 0, 100% 100%, 0% 100%);
-            margin-top: -30px;
-            min-height: 160px;
+            
+            /* Chiều cao 30% tổng màn hình */
+            height: 30vh; 
+            flex-shrink: 0;
+            
+            clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%);
+            margin-top: -4vh; 
+            
             display: flex;
             flex-direction: column;
             justify-content: center;
-            flex-shrink: 0;
+            align-items: center;
+        }
+
+        .quote-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+            padding-top: 1vh;
         }
 
         .quote-text {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: 1.05rem;
+            font-size: 1.9vh; 
             line-height: 1.5;
-            text-align: justify;
-            margin-bottom: 10px;
-            opacity: 0.9;
-        }
-
-        .quote-placeholder {
-            color: #555;
-            font-size: 0.9rem;
+            /* Đã đổi từ justify sang center */
             text-align: center;
-            font-style: italic;
+            margin-bottom: 1.5vh;
+            opacity: 0.9;
+            overflow-y: auto;
+            max-height: 18vh; 
+            
+            scrollbar-width: thin;
+            scrollbar-color: #444 #1a1a1a;
         }
+        
+        .quote-text::-webkit-scrollbar { width: 0.5vh; }
+        .quote-text::-webkit-scrollbar-track { background: #1a1a1a; }
+        .quote-text::-webkit-scrollbar-thumb { background: #444; border-radius: 0.25vh; }
 
         .quote-highlight {
             color: var(--gold);
@@ -252,62 +301,64 @@
 
         .quote-author {
             font-family: 'K2D', sans-serif;
-            text-align: right;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
+            /* Đã đổi từ right sang center */
+            text-align: center;
+            font-size: 1.5vh;
+            letter-spacing: 0.1vh;
             text-transform: uppercase;
             color: var(--accent-red);
-            margin-bottom: 10px;
+            margin-top: auto;
         }
 
-        /* --- COPYRIGHT FOOTER --- */
+        /* --- Footer --- */
         .copyright-footer {
             position: absolute;
-            bottom: 5px;
+            bottom: 0.8vh;
             left: 0;
             width: 100%;
             text-align: center;
-            font-size: 0.5rem;
-            color: #555;
-            padding: 0 10px;
+            font-size: 1vh;
+            color: #666;
+            padding: 0 1vh;
             z-index: 6;
             font-weight: 300;
-            opacity: 0.6;
-        }
-        
-        .quote-container .copyright-text {
-             color: #888;
+            opacity: 0.7;
+            line-height: 1.2;
         }
 
-        /* --- HIỆU ỨNG ĐỘNG --- */
+        /* --- Hiệu ứng --- */
         .eye { animation: blink 4s infinite; }
         @keyframes blink {
             0%, 48%, 52%, 100% { transform: scaleY(1); }
             50% { transform: scaleY(0.1); }
         }
 
-        /* SVG Element Classes */
-        .face-skin { fill: #dccfb8; stroke: #0f0f0f; stroke-width: 2; }
+        /* SVG Classes */
+        .face-skin { fill: #dccfb8; stroke: #0f0f0f; stroke-width: 0.3vh; }
         .hair-fill { fill: #222; }
         .beard-fill { fill: #1a1a1a; }
-        .symbol-stroke { fill: none; stroke: var(--gold); stroke-width: 2; opacity: 0.6; }
+        .symbol-stroke { fill: none; stroke: var(--gold); stroke-width: 0.4vh; opacity: 0.6; }
 
     </style>
 </head>
 <body>
 
     <!-- Controls -->
-    <button class="nav-btn prev-btn" onclick="changeSlide(-1)">&#8592;</button>
-    <button class="nav-btn next-btn" onclick="changeSlide(1)">&#8594;</button>
+    <button class="nav-btn prev-btn" onclick="changeSlide(-1)" aria-label="Previous Slide">&#8592;</button>
+    <button class="nav-btn next-btn" onclick="changeSlide(1)" aria-label="Next Slide">&#8594;</button>
 
     <div class="poster-frame" id="posterFrame">
         <div class="texture-overlay"></div>
 
-        <!-- NEW: Branding Header -->
         <div class="brand-header">
             <div class="brand-logo-holder">
-                <!-- Placeholder cho Logo -->
-                <span>X</span>
+                LOGO THAY THẾ: Bạn có thể thay đoạn SVG bên dưới bằng thẻ img: 
+                     <img src="xomtriethoc.png" class="brand-logo-img" alt="Logo"> 
+               
+                <!-- <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="brand-logo-img">
+                    <circle cx="50" cy="50" r="50" fill="#8a1c1c"/>
+                    <path d="M25 25 L75 75 M75 25 L25 75" stroke="#d4af37" stroke-width="12" stroke-linecap="round"/>
+                </svg> -->
             </div>
             <div class="brand-name">Xóm Triết Học</div>
         </div>
@@ -320,32 +371,32 @@
         </header>
 
         <div class="visual-art">
-            <div class="halo"></div>
-            
-            <svg id="artSvg" width="300" height="350" viewBox="0 0 300 350" xmlns="http://www.w3.org/2000/svg">
-                <!-- SVG Content will be injected by JS -->
-            </svg>
+            <div class="art-group">
+                <div class="halo"></div>
+                <svg id="artSvg" viewBox="0 0 300 350" xmlns="http://www.w3.org/2000/svg">
+                    <!-- JS sẽ điền nội dung vào đây -->
+                </svg>
+            </div>
         </div>
 
         <div class="quote-container">
-            <p class="quote-text" id="pQuote"></p>
-            <div class="quote-author" id="pAuthor"></div>
+            <div class="quote-content-wrapper">
+                <p class="quote-text" id="pQuote"></p>
+                <div class="quote-author" id="pAuthor"></div>
+            </div>
             
-            <!-- NEW: Footer inside the dark container -->
-            <div class="copyright-footer copyright-text">
-                Sản phẩm được tạo bởi Cộng đồng Xóm triết học thuộc quản lý của trung tâm Chí Dũng - được đánh dấu bản quyền - vui lòng không sử dụng nếu chưa có sự đồng ý
+            <div class="copyright-footer">
+                Sản phẩm được tạo bởi Cộng đồng Xóm triết học thuộc quản lý của trung tâm Chí Dũng - được đánh dấu bản quyền.
             </div>
         </div>
     </div>
 
     <script>
-        // Dữ liệu các triết gia
         const philosophers = [
             {
                 id: 1,
                 name: "Friedrich<br>Nietzsche",
                 school: "Hiện Sinh",
-                // Giữ nguyên câu của Nietzsche vì là poster mẫu
                 quote: `"Sự tán thưởng lớn lao được trao đi.<br>Khi ấy, một người bên này <span class="quote-highlight">rất xấu hổ</span>,<br>còn một người dần trở nên <span class="quote-highlight">nhũng nhiễu hơn</span>."`,
                 authorTitle: "Phân tích tâm lý học về quyền lực",
                 features: { beard: 'walrus', hair: 'slick', symbol: 'none' }
@@ -354,7 +405,7 @@
                 id: 2,
                 name: "Thales",
                 school: "Trường phái Milesian",
-                quote: `<span class="quote-placeholder">[ Nội dung đang cập nhật... ]</span>`,
+                quote: `"Nguyên lý của vạn vật là Nước. Mọi thứ đều từ nước mà ra và lại trở về với nước."`,
                 authorTitle: "Khởi nguyên triết học",
                 features: { beard: 'long', hair: 'curly', symbol: 'water' }
             },
@@ -362,7 +413,7 @@
                 id: 3,
                 name: "Parmenides",
                 school: "Trường phái Elea",
-                quote: `<span class="quote-placeholder">[ Nội dung đang cập nhật... ]</span>`,
+                quote: `"Cái gì là, thì là. Cái gì không là, thì không là. Không thể biết hay nói về cái không tồn tại."`,
                 authorTitle: "Bàn về Tồn tại",
                 features: { beard: 'pointy', hair: 'balding', symbol: 'sphere' }
             },
@@ -370,7 +421,7 @@
                 id: 4,
                 name: "Anaximander",
                 school: "Trường phái Milesian",
-                quote: `<span class="quote-placeholder">[ Nội dung đang cập nhật... ]</span>`,
+                quote: `"Nguồn gốc của vạn vật không phải nước hay lửa, mà là cái Vô hạn (Apeiron). Nó sinh ra tất cả và thu hồi tất cả."`,
                 authorTitle: "Khái niệm Vô Cực (Apeiron)",
                 features: { beard: 'full', hair: 'short', symbol: 'infinity' }
             },
@@ -378,7 +429,7 @@
                 id: 5,
                 name: "Anaximenes",
                 school: "Trường phái Milesian",
-                quote: `<span class="quote-placeholder">[ Nội dung đang cập nhật... ]</span>`,
+                quote: `"Cũng như linh hồn ta là không khí giữ chặt ta, thì hơi thở và không khí bao trùm cả vũ trụ."`,
                 authorTitle: "Khí là bản nguyên",
                 features: { beard: 'short', hair: 'windy', symbol: 'air' }
             },
@@ -386,7 +437,7 @@
                 id: 6,
                 name: "Pythagoras",
                 school: "Trường phái Pythagoras",
-                quote: `<span class="quote-placeholder">[ Nội dung đang cập nhật... ]</span>`,
+                quote: `"Vạn vật là những con số. Sự hòa hợp của vũ trụ nằm ở những tỷ lệ toán học."`,
                 authorTitle: "Toán học & Thần bí",
                 features: { beard: 'long_pointy', hair: 'turban', symbol: 'triangle' }
             },
@@ -394,7 +445,7 @@
                 id: 7,
                 name: "Heraclitus",
                 school: "Trường phái Ephesus",
-                quote: `<span class="quote-placeholder">[ Nội dung đang cập nhật... ]</span>`,
+                quote: `"Không ai tắm hai lần trên một dòng sông. Mọi thứ đều trôi đi, không có gì đứng yên."`,
                 authorTitle: "Triết gia Dòng chảy",
                 features: { beard: 'messy', hair: 'messy', symbol: 'fire' }
             },
@@ -402,7 +453,7 @@
                 id: 8,
                 name: "Democritus",
                 school: "Trường phái Nguyên tử",
-                quote: `<span class="quote-placeholder">[ Nội dung đang cập nhật... ]</span>`,
+                quote: `"Theo quy ước có ngọt, có đắng, có nóng, có lạnh, có màu sắc; nhưng trong thực tế chỉ có nguyên tử và khoảng không."`,
                 authorTitle: "Triết gia Cười",
                 features: { beard: 'stubble', hair: 'short_curly', symbol: 'atom' }
             },
@@ -410,7 +461,7 @@
                 id: 9,
                 name: "Zeno of Elea",
                 school: "Trường phái Elea",
-                quote: `<span class="quote-placeholder">[ Nội dung đang cập nhật... ]</span>`,
+                quote: `"Achilles không bao giờ đuổi kịp con rùa. Chuyển động chỉ là ảo giác."`,
                 authorTitle: "Nghịch lý Không - Thời gian",
                 features: { beard: 'medium', hair: 'neat', symbol: 'tortoise' }
             },
@@ -418,7 +469,7 @@
                 id: 10,
                 name: "Anaxagoras",
                 school: "Trường phái Đa nguyên",
-                quote: `<span class="quote-placeholder">[ Nội dung đang cập nhật... ]</span>`,
+                quote: `"Trong mọi thứ đều có một phần của mọi thứ."`,
                 authorTitle: "Trí tuệ (Nous) & Vũ trụ",
                 features: { beard: 'wise', hair: 'scarf', symbol: 'seed' }
             }
@@ -426,43 +477,34 @@
 
         let currentIndex = 0;
 
-        // --- HÀM VẼ SVG ĐỘNG ---
         function generateSVG(features) {
             let svgContent = '';
-
-            // 1. CỔ ÁO & VAI (Chung)
             svgContent += `<path d="M50 350 L50 280 L250 280 L250 350 Z" fill="#222" />`;
-            
-            // 2. KHUÔN MẶT (Cơ bản)
             svgContent += `<path d="M80 80 Q150 20 220 80 L220 200 Q150 240 80 200 Z" class="face-skin"/>`;
-            // Bóng đổ mặt
             svgContent += `<path d="M150 30 L150 220 L220 200 L220 80 Z" fill="#000" opacity="0.1" />`;
 
-            // 3. TÓC (Biến thể)
-            if (features.hair === 'slick') { // Nietzsche
+            if (features.hair === 'slick') { 
                  svgContent += `<path d="M80 80 Q150 20 220 80 L220 60 Q150 0 80 60 Z" class="hair-fill"/>`;
-            } else if (features.hair === 'curly') { // Hy Lạp cổ điển
-                 svgContent += `<circle cx="80" cy="80" r="20" class="hair-fill"/> <circle cx="220" cy="80" r="20" class="hair-fill"/> 
-                                <circle cx="150" cy="40" r="30" class="hair-fill"/>`;
-            } else if (features.hair === 'turban') { // Pythagoras
+            } else if (features.hair === 'curly') { 
+                 svgContent += `<circle cx="80" cy="80" r="20" class="hair-fill"/> <circle cx="220" cy="80" r="20" class="hair-fill"/> <circle cx="150" cy="40" r="30" class="hair-fill"/>`;
+            } else if (features.hair === 'turban') { 
                  svgContent += `<path d="M70 100 Q150 -20 230 100" fill="none" stroke="#333" stroke-width="20" stroke-linecap="round"/>`;
-            } else if (features.hair === 'messy') { // Heraclitus
+            } else if (features.hair === 'messy') { 
                  svgContent += `<path d="M70 90 L60 40 L100 60 L120 20 L150 50 L180 20 L200 60 L240 40 L230 90" fill="#222"/>`;
-            } else if (features.hair === 'short') { // Anaximander
+            } else if (features.hair === 'short') { 
                  svgContent += `<path d="M80 80 Q150 40 220 80 L220 120 L80 120 Z" class="hair-fill"/>`;
-            } else if (features.hair === 'balding') { // Parmenides
+            } else if (features.hair === 'balding') { 
                  svgContent += `<path d="M70 150 Q70 80 90 80 L210 80 Q230 80 230 150 L220 150 L220 100 L80 100 L80 150 Z" class="hair-fill"/>`;
-            } else if (features.hair === 'windy') { // Anaximenes
+            } else if (features.hair === 'windy') { 
                  svgContent += `<path d="M70 100 Q120 30 180 80 Q230 40 240 100" fill="none" stroke="#222" stroke-width="15" stroke-linecap="round"/>`;
-            } else if (features.hair === 'short_curly') { // Democritus
+            } else if (features.hair === 'short_curly') { 
                  svgContent += `<circle cx="90" cy="70" r="15" class="hair-fill"/> <circle cx="110" cy="60" r="15" class="hair-fill"/> <circle cx="130" cy="55" r="15" class="hair-fill"/> <circle cx="150" cy="60" r="15" class="hair-fill"/> <circle cx="170" cy="55" r="15" class="hair-fill"/> <circle cx="190" cy="60" r="15" class="hair-fill"/> <circle cx="210" cy="70" r="15" class="hair-fill"/>`;
-            } else if (features.hair === 'neat') { // Zeno
+            } else if (features.hair === 'neat') { 
                  svgContent += `<path d="M80 80 Q150 50 220 80 L220 100 L80 100 Z" class="hair-fill"/>`;
-            } else if (features.hair === 'scarf') { // Anaxagoras
+            } else if (features.hair === 'scarf') { 
                  svgContent += `<path d="M70 120 Q150 0 230 120 L230 150 L70 150 Z" fill="#444"/>`;
             }
 
-            // 4. MẮT (Chung)
             svgContent += `<g transform="translate(0, 10)">
                 <path d="M90 130 L130 130 L130 145 L90 145 Z" fill="#e0d5c1" stroke="#000" stroke-width="0.5"/>
                 <path d="M170 130 L210 130 L210 145 L170 145 Z" fill="#1a1a1a" />
@@ -470,31 +512,29 @@
                 <circle cx="190" cy="140" r="3" fill="#fff" class="eye" transform-origin="190 140"/>
             </g>`;
 
-            // 5. RÂU (Biến thể chính)
-            if (features.beard === 'walrus') { // Nietzsche
+            if (features.beard === 'walrus') { 
                 svgContent += `<defs><linearGradient id="mustacheGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#0f0f0f;stop-opacity:1" /><stop offset="50%" style="stop-color:#2a2a2a;stop-opacity:1" /><stop offset="100%" style="stop-color:#0f0f0f;stop-opacity:1" /></linearGradient></defs>
                                <path d="M60 200 C 60 190, 150 170, 240 200 C 240 230, 220 260, 150 250 C 80 260, 60 230, 60 200 Z" fill="url(#mustacheGrad)" />`;
-            } else if (features.beard === 'long') { // Thales
+            } else if (features.beard === 'long') { 
                 svgContent += `<path d="M80 190 Q150 350 220 190 L220 180 L80 180 Z" class="beard-fill"/>`;
-            } else if (features.beard === 'pointy') { // Parmenides
+            } else if (features.beard === 'pointy') { 
                 svgContent += `<path d="M90 190 L150 300 L210 190 Z" class="beard-fill"/>`;
-            } else if (features.beard === 'full') { // Anaximander
+            } else if (features.beard === 'full') { 
                 svgContent += `<path d="M70 180 Q150 320 230 180 Z" class="beard-fill"/>`;
-            } else if (features.beard === 'short') { // Anaximenes
+            } else if (features.beard === 'short') { 
                  svgContent += `<path d="M90 200 Q150 240 210 200 Z" class="beard-fill"/>`;
-            } else if (features.beard === 'long_pointy') { // Pythagoras
+            } else if (features.beard === 'long_pointy') { 
                  svgContent += `<path d="M80 180 L150 320 L220 180 Z" class="beard-fill"/>`;
-            } else if (features.beard === 'messy') { // Heraclitus
+            } else if (features.beard === 'messy') { 
                  svgContent += `<path d="M70 180 L100 280 L150 250 L200 280 L230 180 Z" class="beard-fill"/>`;
-            } else if (features.beard === 'stubble') { // Democritus
+            } else if (features.beard === 'stubble') { 
                  svgContent += `<path d="M90 200 Q150 220 210 200" fill="none" stroke="#222" stroke-width="5" stroke-dasharray="2,2"/>`;
-            } else if (features.beard === 'medium') { // Zeno
+            } else if (features.beard === 'medium') { 
                  svgContent += `<path d="M85 190 Q150 260 215 190 Z" class="beard-fill"/>`;
-            } else if (features.beard === 'wise') { // Anaxagoras
+            } else if (features.beard === 'wise') { 
                  svgContent += `<path d="M80 190 Q150 300 220 190 Z" class="beard-fill"/>`;
             }
 
-            // 6. BIỂU TƯỢNG (Floating Symbol)
             if (features.symbol === 'water') {
                 svgContent += `<path d="M120 300 Q150 280 180 300 T240 300" class="symbol-stroke"/>`;
             } else if (features.symbol === 'triangle') {
@@ -520,17 +560,11 @@
 
         function renderSlide(index) {
             const data = philosophers[index];
-            
-            // Fade out text elements
-            const elements = ['epNum', 'pName', 'pSchool', 'pQuote', 'pAuthor'];
-            // Update text
             document.getElementById('epNum').innerText = data.id < 10 ? `0${data.id}` : data.id;
             document.getElementById('pName').innerHTML = data.name;
             document.getElementById('pSchool').innerText = data.school;
             document.getElementById('pQuote').innerHTML = data.quote;
             document.getElementById('pAuthor').innerText = data.authorTitle;
-
-            // Update SVG
             document.getElementById('artSvg').innerHTML = generateSVG(data.features);
         }
 
