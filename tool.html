@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Công cụ tạo Poster</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f0f2f5;
+        }
+
+        #preview-frame {
+            transform: scale(0.9);
+            transform-origin: top center;
+            height: 1000px;
+            /* Approximate height of the poster */
+        }
+    </style>
+</head>
+
+<body class="font-sans text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <!-- Cột điều khiển -->
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h1 class="text-3xl font-bold mb-2 text-gray-900">Công cụ tạo Poster</h1>
+                <p class="mb-6 text-gray-600">Nhập nội dung vào các ô bên dưới để tạo poster mới dựa trên mẫu có sẵn.
+                </p>
+
+                <div class="space-y-4">
+                    <div>
+                        <label for="quote-input" class="block text-sm font-medium text-gray-700 mb-1">Trích dẫn (Quote)</label>
+                        <textarea id="quote-input" rows="5"
+                            class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="Nhập câu trích dẫn ở đây. Bạn có thể xuống dòng."></textarea>
+                    </div>
+
+                    <div>
+                        <label for="author-input" class="block text-sm font-medium text-gray-700 mb-1">Tác giả / Nguồn</label>
+                        <input type="text" id="author-input"
+                            class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="Ví dụ: Parmenides vs. Democritus">
+                    </div>
+
+                    <div>
+                        <label for="number-input" class="block text-sm font-medium text-gray-700 mb-1">Số thứ tự Poster</label>
+                        <input type="text" id="number-input"
+                            class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="Ví dụ: Số 02">
+                    </div>
+                     <div>
+                        <label for="filename-input" class="block text-sm font-medium text-gray-700 mb-1">Tên file để tải về</label>
+                        <input type="text" id="filename-input"
+                            class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="Ví dụ: poster_moi.html">
+                    </div>
+                </div>
+
+                <div class="mt-6 flex items-center gap-4">
+                    <button id="generate-btn"
+                        class="bg-blue-600 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Tạo & Xem trước
+                    </button>
+                    <a id="download-link"
+                        class="hidden bg-green-600 text-white font-bold py-2 px-4 rounded-md hover:bg-green-700">
+                        Tải Poster xuống
+                    </a>
+                </div>
+                
+                <div id="error-box" class="mt-4 text-red-600 hidden"></div>
+                 <div class="mt-8 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700">
+                    <h3 class="font-bold">Lưu ý quan trọng</h3>
+                    <p>Để công cụ này hoạt động, bạn cần chạy một server web cục bộ. Xem hướng dẫn ở file README hoặc trong phần bình luận của file này.</p>
+                </div>
+            </div>
+
+            <!-- Cột xem trước -->
+            <div class="bg-white p-2 rounded-lg shadow-lg">
+                 <h2 class="text-xl font-bold mb-4 text-center text-gray-900">Xem trước</h2>
+                <iframe id="preview-frame" class="w-full border-2 border-gray-200 rounded-md" title="Xem trước Poster"></iframe>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const TEMPLATE_FILE = 'chudiemnho.html';
+
+        const quoteInput = document.getElementById('quote-input');
+        const authorInput = document.getElementById('author-input');
+        const numberInput = document.getElementById('number-input');
+        const filenameInput = document.getElementById('filename-input');
+        const generateBtn = document.getElementById('generate-btn');
+        const downloadLink = document.getElementById('download-link');
+        const previewFrame = document.getElementById('preview-frame');
+        const errorBox = document.getElementById('error-box');
+
+        let generatedHtml = '';
+
+        generateBtn.addEventListener('click', async () => {
+            errorBox.classList.add('hidden');
+            try {
+                // 1. Fetch the template content
+                const response = await fetch(TEMPLATE_FILE);
+                if (!response.ok) {
+                    throw new Error(`Không thể tải file mẫu: ${TEMPLATE_FILE}. Hãy chắc chắn bạn đang chạy trên một server cục bộ.`);
+                }
+                const templateHtml = await response.text();
+
+                // 2. Parse the template
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(templateHtml, 'text/html');
+
+                // 3. Get user inputs
+                const newQuote = quoteInput.value;
+                const newAuthor = authorInput.value;
+                const newNumber = numberInput.value;
+
+                // 4. Manipulate the DOM
+                // Update Quote
+                const quoteElement = doc.getElementById('quote');
+                if (quoteElement) {
+                    const newQuoteStripped = newQuote.trim();
+                    if (newQuoteStripped) {
+                        const firstLetter = newQuoteStripped[0];
+                        const restOfQuote = newQuoteStripped.substring(1);
+
+                        const spanTag = doc.createElement('span');
+                        spanTag.className = 'font-sans font-black text-6xl float-left mr-4 mt-[-12px] text-poster-accent leading-none';
+                        spanTag.textContent = firstLetter;
+
+                        quoteElement.innerHTML = ''; // Clear old content
+                        quoteElement.appendChild(spanTag);
+                        quoteElement.append(restOfQuote.replace(/\n/g, '<br>'));
+                    }
+                }
+
+                // Update Author
+                const authorElement = doc.querySelector('div.mt-8 > p.text-poster-accent');
+                if (authorElement && newAuthor) {
+                    authorElement.textContent = newAuthor;
+                }
+                
+                // Update Poster Number
+                const numberElement = doc.querySelector('header div.text-right > p.font-sans');
+                if(numberElement && newNumber) {
+                    numberElement.textContent = newNumber;
+                }
+
+                // Update year in footer
+                const yearElement = doc.getElementById('year');
+                if(yearElement) {
+                    yearElement.textContent = new Date().getFullYear();
+                }
+
+                // 5. Serialize the document back to a string
+                generatedHtml = new XMLSerializer().serializeToString(doc);
+                
+                // Add DOCTYPE back
+                generatedHtml = '<!DOCTYPE html>\n' + generatedHtml;
+
+
+                // 6. Update preview and download link
+                previewFrame.srcdoc = generatedHtml;
+                
+                const blob = new Blob([generatedHtml], { type: 'text/html' });
+                const url = URL.createObjectURL(blob);
+                
+                downloadLink.href = url;
+                const filename = filenameInput.value.trim();
+                downloadLink.download = (filename && filename.endsWith('.html')) ? filename : (filename ? `${filename}.html` : 'poster.html');
+                downloadLink.classList.remove('hidden');
+
+            } catch (error) {
+                errorBox.textContent = `Lỗi: ${error.message}`;
+                errorBox.classList.remove('hidden');
+                console.error(error);
+            }
+        });
+
+    </script>
+
+</body>
+</html>
