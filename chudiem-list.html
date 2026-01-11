@@ -8,8 +8,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+
     <script>
         tailwind.config = {
             theme: {
@@ -30,16 +32,21 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #222; /* Nền tối như viền poster */
+            background-color: #222;
+            /* Nền tối như viền poster */
         }
+
         .list-item {
             transition: background-color 0.3s ease;
         }
+
         .list-item:hover {
             background-color: #fff;
         }
+
         .list-item:hover .item-title {
-            color: #CC3300; /* poster-accent */
+            color: #CC3300;
+            /* poster-accent */
         }
     </style>
 </head>
@@ -47,20 +54,20 @@
 <body class="text-poster-black">
 
     <div class="max-w-4xl mx-auto my-12 md:my-20 px-4">
-        
+
         <!-- Header -->
         <header class="p-8 pb-4 flex justify-between items-center border-b-2 border-gray-500 mb-10">
             <div class="flex flex-col gap-1">
-                 <a href="index.html" class="flex items-center gap-2 text-gray-300 hover:text-white">
+                <a href="index.html" class="flex items-center gap-2 text-gray-300 hover:text-white">
                     <img src="xomtriethoc.png" alt="Logo Xóm" class="w-10 h-10 object-contain">
                     <span class="text-xs uppercase tracking-wider font-bold">Xóm Triết học</span>
-                 </a>
+                </a>
             </div>
             <div class="flex flex-col gap-1 items-end">
-                 <a href="#" class="flex items-center gap-2 text-gray-300">
+                <a href="#" class="flex items-center gap-2 text-gray-300">
                     <span class="text-xs uppercase tracking-wider font-bold">Trung tâm Chí Dũng</span>
                     <img src="chidungcenterLogo.png" alt="Logo Chí Dũng" class="w-10 h-10 object-contain">
-                 </a>
+                </a>
             </div>
         </header>
 
@@ -77,16 +84,19 @@
         <!-- List -->
         <main class="bg-poster-bg shadow-2xl">
             <div class="divide-y divide-gray-300">
-                
+
                 <!-- Item 1 -->
                 <a href="chudiemnho.html" class="list-item block p-6 md:p-8">
                     <div class="flex justify-between items-start">
                         <div>
-                            <p class="font-sans text-xs font-bold tracking-[0.2em] uppercase mb-2 text-poster-accent">Số 01</p>
-                            <h3 class="item-title font-serif text-3xl font-bold text-poster-black">Hư Vô và Chuyển Động</h3>
+                            <p class="font-sans text-xs font-bold tracking-[0.2em] uppercase mb-2 text-poster-accent">Số
+                                01</p>
+                            <h3 class="item-title font-serif text-3xl font-bold text-poster-black">Hư Vô và Chuyển Động
+                            </h3>
                         </div>
                         <div class="text-right flex-shrink-0 ml-4">
-                            <p class="font-sans text-sm font-semibold text-poster-black/70">Parmenides vs. Democritus</p>
+                            <p class="font-sans text-sm font-semibold text-poster-black/70">Parmenides vs. Democritus
+                            </p>
                         </div>
                     </div>
                 </a>
@@ -95,8 +105,10 @@
                 <a href="dongcat_chudiemnho02.html" class="list-item block p-6 md:p-8">
                     <div class="flex justify-between items-start">
                         <div>
-                            <p class="font-sans text-xs font-bold tracking-[0.2em] uppercase mb-2 text-poster-accent">Số 02</p>
-                            <h3 class="item-title font-serif text-3xl font-bold text-poster-black">Nghịch lý đống cát</h3>
+                            <p class="font-sans text-xs font-bold tracking-[0.2em] uppercase mb-2 text-poster-accent">Số
+                                02</p>
+                            <h3 class="item-title font-serif text-3xl font-bold text-poster-black">Nghịch lý đống cát
+                            </h3>
                         </div>
                         <div class="text-right flex-shrink-0 ml-4">
                             <p class="font-sans text-sm font-semibold text-poster-black/70">Nghịch lý Sorites</p>
@@ -104,11 +116,27 @@
                     </div>
                 </a>
 
-                 <!-- Item placeholder -->
-                <div class="p-6 md:p-8">
-                     <div class="flex justify-between items-center">
+                <!-- Item 3 -->
+                <a href="heraclitus_chudiemnho03.html" class="list-item block p-6 md:p-8">
+                    <div class="flex justify-between items-start">
                         <div>
-                            <p class="font-sans text-xs font-bold tracking-[0.2em] uppercase mb-2 text-gray-400">Sắp ra mắt</p>
+                            <p class="font-sans text-xs font-bold tracking-[0.2em] uppercase mb-2 text-poster-accent">Số
+                                03</p>
+                            <h3 class="item-title font-serif text-3xl font-bold text-poster-black">Dòng sông của
+                                Heraclitus</h3>
+                        </div>
+                        <div class="text-right flex-shrink-0 ml-4">
+                            <p class="font-sans text-sm font-semibold text-poster-black/70">Heraclitus</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Item placeholder -->
+                <div class="p-6 md:p-8">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="font-sans text-xs font-bold tracking-[0.2em] uppercase mb-2 text-gray-400">Sắp ra
+                                mắt</p>
                             <h3 class="font-serif text-3xl font-bold text-gray-400">Chủ đề mới...</h3>
                         </div>
                     </div>
@@ -116,7 +144,7 @@
 
             </div>
         </main>
-        
+
         <!-- Footer -->
         <footer class="text-center mt-12">
             <a href="index.html" class="text-gray-500 hover:text-gray-400 transition text-sm">← Quay lại trang chủ</a>
